@@ -29,13 +29,14 @@ class App extends Component {
 
 
   componentDidMount() {
-    fetch("https://dog.ceo/dog-api/breed/breeds/image/random")
+    fetch(url)
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            items: result.items
+            items: result.items,
+            imageSrc: result.message
           });
         },
         // Note: it's important to handle errors here
@@ -63,7 +64,7 @@ class App extends Component {
                             SEARCH
                         </button>
         		    </form>
-
+                    <img src={this.state.imageSrc} />
                 </div>
             </div>
           </div>
