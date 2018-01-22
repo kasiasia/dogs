@@ -4,7 +4,7 @@ import './App.css';
 
 const errorMessage = "I didn't find any pictures...:( ";
 const breed = "beagle";
-const url="https://dog.ceo/dog-api/breeds/image/random";
+const url="https://dog.ceo/api/breed/hound/images/random";
 
 console.log(url);
 
