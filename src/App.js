@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import './App.css';
 
 const errorMessage = "I didn't find any pictures...:( ";
-const breed = "beagle";
+//const breed = "beagle";
 const url="https://dog.ceo/api/breed/hound/images/random";
 
-console.log(url);
+//console.log(url);
 
 
 class App extends Component {
@@ -16,11 +16,14 @@ class App extends Component {
       error: null,
       isLoaded: false,
       breed: '',
-      items: []
+      images: []
     };
   }
 
   /*this.searchBreed = this.searchBreed.bind(this);*/
+  handleClick = () => {
+    console.log('this is:', this);
+  }
 
   searchBreed(breed) {
     return !this.state.results[breed];
@@ -35,7 +38,7 @@ class App extends Component {
         (result) => {
           this.setState({
             isLoaded: true,
-            items: result.items,
+            images: result.images,
             imageSrc: result.message
           });
         },
@@ -60,7 +63,7 @@ class App extends Component {
                 <div className="Search">
                     <form onSubmit={this.props.onSubmit} id="search" className="SearchForm">
         				<input type="search" className="SearchInput" placeholder="Breed name" />
-                        <button className="SearchBtn" type="submit">
+                        <button className="SearchBtn" type="submit" onClick={this.handleClick}>
                             SEARCH
                         </button>
         		    </form>
@@ -72,18 +75,22 @@ class App extends Component {
     const { error, isLoaded, items } = this.state;
     if (error) {
       return <div>Error: {errorMessage}</div>;
-    } else if (!isLoaded) {
+  } else if (!isLoaded) {
       return <div>Loading...</div>;
-    } else {
-      return (
+  } else {
+/*      return (
         <ul>
-          {items.map(item => (
-            <li key={item.name}>
-              {item.name}
+        (image, index)=><Image  key={index} {...image} />
+          {images.map(item => (
+            <li key={image.index}>
+              {image.index}
             </li>
           ))}
+
+
+
         </ul>
-      );
+    );*/
     }
   }
 }
